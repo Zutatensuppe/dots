@@ -10,6 +10,6 @@ export EDITOR="$VISUAL"
 # set editing-mode vi
 set -o vi
 
-bind "jj":vi-movement-mode # remap escape
+# bind "jj":vi-movement-mode # remap escape
 
 . ~/git-completion.bash
