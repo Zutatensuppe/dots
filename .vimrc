@@ -65,3 +65,12 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
      \| exe "normal! g'\"" | endif
 endif
+
+
+
+
+"# Enabling Syntax complete 
+"# -------------------------------------------------
+
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
