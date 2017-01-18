@@ -1,6 +1,10 @@
 rm ~/.vim/bundle/Vundle.vim -rf
+rm ~/git-completion.bash
+
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+wget -O ~/git-completion.bash https://github.com/git/git/blob/master/contrib/completion/git-completion.bash
 
 mkdir -p ~/.vim/colors
 cp .vim/colors/molokai.vim ~/.vim/colors/molokai.vim
