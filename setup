@@ -1,0 +1,12 @@
+rm ~/.vim/bundle/Vundle.vim -rf
+
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+mkdir -p ~/.vim/colors
+cp .vim/colors/molokai.vim ~/.vim/colors/molokai.vim
+
+cp .vimrc ~/.vimrc
+cp .profile ~/.profile
+
+# Vundle stuff
+vim +PluginInstall +qall
