@@ -34,6 +34,7 @@ filetype plugin indent on    " required
 "# -------------------------------------------------
 
 set relativenumber
+set number
 syntax on
 color molokai
 filetype on
