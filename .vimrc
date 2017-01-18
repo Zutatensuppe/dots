@@ -1,3 +1,6 @@
+
+
+
 "# Vundle 
 "# -------------------------------------------------
 
@@ -30,6 +33,9 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+
+
+
 "# General
 "# -------------------------------------------------
 
@@ -39,6 +45,18 @@ syntax on
 color molokai
 filetype on
 set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
+
+
+
+
+"# Remapping
+"# -------------------------------------------------
+
+" for non-ergodox keyboard, remap jj to esc
+inoremap jj <Esc>
+
+
+
 
 "# Go back to last caret when reopening a file
 "# -------------------------------------------------

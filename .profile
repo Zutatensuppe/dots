@@ -5,4 +5,8 @@ alias 'l=ls -la'
 
 export VISUAL=vim
 export EDITOR="$VISUAL"
+
+# set editing-mode vi
 set -o vi
+
+bind "jj":vi-movement-mode # remap escape
