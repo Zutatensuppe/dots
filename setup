@@ -11,6 +11,7 @@ cp .vim/colors/molokai.vim ~/.vim/colors/molokai.vim
 
 cp .vimrc ~/.vimrc
 cp .profile ~/.profile
+cp .inputrc ~/.inputrc
 
 # Vundle stuff
 vim +PluginInstall +qall
