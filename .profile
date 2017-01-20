@@ -4,6 +4,7 @@ export LS_COLORS=$LS_COLORS:'di=36:'
 alias '..=cd ..'
 alias 'l=ls -la'
 alias 'mux=tmux -2 attach || tmux -2 new'
+alias 'vi=vim';
 
 export VISUAL=vim
 export EDITOR="$VISUAL"
