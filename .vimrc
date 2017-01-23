@@ -20,6 +20,9 @@ Plugin 'posva/vim-vue'
 
 Plugin 'ctrlpvim/ctrlp.vim'
 
+Plugin 'scrooloose/nerdtree'
+
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -77,8 +80,8 @@ nnoremap <C-l> <C-w>l
 noremap <F12> <Esc>:syntax sync fromstart<CR>
 inoremap <F12> <C-o>:syntax sync fromstart<CR>
 
-"let mapleader = ","
-"nmap <leader>ne :NERDTreeToggle<cr>
+let mapleader = ","
+nmap <leader>ne :NERDTreeToggle<cr>
 
 
 
