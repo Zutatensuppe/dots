@@ -41,6 +41,18 @@ filetype plugin indent on    " required
 
 
 
+"# Make paste go into paste mode automatically
+" ----------------------------------------------------
+let &t_SI .= "\<Esc>[?2004h"
+let &t_EI .= "\<Esc>[?2004l"
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+function! XTermPasteBegin()
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction
+
+
 
 
 "# Options for CTRLP
@@ -58,7 +70,8 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 set relativenumber
 set number
 syntax on
-color molokai
+colorscheme solarized
+set background=dark
 filetype on
 set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
 
@@ -82,6 +95,7 @@ inoremap <F12> <C-o>:syntax sync fromstart<CR>
 
 let mapleader = ","
 nmap <leader>ne :NERDTreeToggle<cr>
+nmap <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>
 
 
 
@@ -103,4 +117,11 @@ if has("autocmd")
 endif
 
 
-
+"# Make clear what active split is by hiding 
+"# colorcolumn on winleave
+"# -------------------------------------------------
+augroup BgHighlight
+    autocmd!
+    autocmd WinEnter * set colorcolumn=80
+    autocmd WinLeave * set colorcolumn=0
+augroup END
