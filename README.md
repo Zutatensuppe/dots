@@ -35,3 +35,13 @@ add the following to /etc/pulse/default.pa
 before the if... udev-detect - block in your /etc/default.pa
   
   load-module module-switch-on-connect
+
+# remove swappiness of system
+
+@see http://askubuntu.com/a/149427
+
+To permanently set swappiness to X (1-10 should be good, while default is 60):
+
+  sudoedit /etc/sysctl.conf
+  Add this line vm.swappiness = X
+  sudo shutdown -r now # restart system
