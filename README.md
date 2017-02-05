@@ -14,18 +14,18 @@ put into .bashrc:
 ## video
 
 install xrandr
-  $ sudo apt-get install xrandr
+	$ sudo apt-get install xrandr
 
 install graphical user interface for xrandr
-  $ sudo apt-get install arandr
+	$ sudo apt-get install arandr
 
 ## audio
 
 install pulseaudio
-  $ sudo apt-get install pulseaudio
+	$ sudo apt-get install pulseaudio
 
 install gui for pulseaudio
-  $ sudo apt-get install pavucontrol
+	$ sudo apt-get install pavucontrol
 
 
 
@@ -34,7 +34,7 @@ install gui for pulseaudio
 add the following to /etc/pulse/default.pa
 before the if... udev-detect - block in your /etc/default.pa
   
-  load-module module-switch-on-connect
+	load-module module-switch-on-connect
 
 # remove swappiness of system
 
@@ -42,6 +42,7 @@ before the if... udev-detect - block in your /etc/default.pa
 
 To permanently set swappiness to X (1-10 should be good, while default is 60):
 
-  sudoedit /etc/sysctl.conf
-  Add this line vm.swappiness = X
-  sudo shutdown -r now # restart system
+	sudoedit /etc/sysctl.conf
+	Add this line vm.swappiness = X
+	sudo shutdown -r now # restart system
+
