@@ -1,0 +1,8 @@
+URxvt.font: xft:DejaVu Sans Mono:size=9
+
+XTerm*faceName: DejaVu Sans Mono
+XTerm*faceSize: 9
+xterm*termName: xterm-256color
+
+#include ".XResources.dark"
+

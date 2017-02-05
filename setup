@@ -1,17 +1,27 @@
-rm ~/.vim/bundle/Vundle.vim -rf
+# cleanup first 
 rm ~/git-completion.bash
+rm ~/.vim
+rm ~/.vimrc
+rm ~/.profile
+rm ~/.inputrc
+rm ~/.xinitrc
+rm ~/.XResources
+rm ~/.XResources.dark
 
+# create symlinks
+ln -s .vim ~/.vim
+ln -s .vimrc ~/.vimrc
+ln -s .profile ~/.profile
+ln -s .inputrc ~/.inputrc
+ln -s .xinitrc ~/.xinitrc
+ln -s .XResources ~/.XResources
+ln -s .XResources.dark ~/.XResources.dark
 
+# add fresh vundle from github
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
+# add fresh git completion 
 wget -O ~/git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
 
-mkdir -p ~/.vim/colors
-cp .vim/colors/molokai.vim ~/.vim/colors/molokai.vim
-
-cp .vimrc ~/.vimrc
-cp .profile ~/.profile
-cp .inputrc ~/.inputrc
-
-# Vundle stuff
+# install vundle plugins
 vim +PluginInstall +qall

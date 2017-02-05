@@ -1,3 +1,5 @@
+PATH=$HOME/.cabal/bin:$PATH
+
 if [ "$TERM" == "xterm" ]; then
   # No it isn't, it's gnome-terminal
   export TERM=xterm-256color
@@ -5,7 +7,7 @@ fi
 
 if [ -n "$DISPLAY" ]; then
   xset b off
-  xset s noblank
+  xset s off
 fi
 
 export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[38;5;6m\]\w\[\033[00m\]\$ '

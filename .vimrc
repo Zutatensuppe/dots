@@ -22,6 +22,10 @@ Plugin 'ctrlpvim/ctrlp.vim'
 
 Plugin 'scrooloose/nerdtree'
 
+Plugin 'mileszs/ack.vim'
+
+Plugin 'nelsyeung/twig.vim'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -75,7 +79,8 @@ set background=dark
 filetype on
 set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
 
-
+" let g:ackprg = 'ag --nogroup --nocolor --column'
+let g:ackprg = 'ag --vimgrep'
 
 
 "# Remapping
@@ -96,7 +101,8 @@ inoremap <F12> <C-o>:syntax sync fromstart<CR>
 let mapleader = ","
 nmap <leader>ne :NERDTreeToggle<cr>
 nmap <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>
-
+nmap <Leader>tt :Ack 
+nmap <Leader>ff :Ack 
 
 
 "# Enabling Syntax complete 

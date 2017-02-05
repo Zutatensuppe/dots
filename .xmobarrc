@@ -1,0 +1,44 @@
+Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
+       , additionalFonts = []
+       , borderColor = "black"
+       , bgColor = "#272827"
+       , fgColor = "#efefef"
+       , alpha = 255
+       , position = Top
+       , textOffset = -1
+       , iconOffset = -1
+       , lowerOnStart = True
+       , pickBroadest = False
+       , persistent = False
+       , hideOnStart = False
+       , iconRoot = "."
+       , allDesktops = True
+       , overrideRedirect = True
+       , commands = [ Run Weather "EDDT" ["-t","Brln: <tempC>","-L","18","-H","25","--normal","green","--high","red","--low","#70D2E7"] 36000
+                    , Run Weather "RJFT" ["-t","Kmto: <tempC>","-L","18","-H","25","--normal","green","--high","red","--low","#70D2E7"] 36000
+                    , Run Network "wlan0" ["-L","0","-H","32",
+                                          "--normal","green","--high","red"] 10
+                    , Run Cpu ["-L","3","-H","50",
+                               "--normal","green","--high","red"] 10
+                    , Run Memory ["-t","Mem: <usedratio>%"] 10
+                    , Run Swap [] 10
+                    , Run Date "%a %Y-%m-%d %H:%M:%S" "date" 10
+                    , Run BatteryP ["BAT0"]
+                             ["-t", "Bat: <acstatus>",
+                              "-L", "10", 
+                              "-H", "80",
+                              "--low"      , "darkred",
+                              "--normal"   , "darkorange",
+                              "--high"     , "green",
+                              "--", 
+                              "-O", "<left>%",
+                              "-o", "<left>% (<timeleft>)",
+                              "-i", "<left>%"
+                             ] 600
+                    , Run StdinReader
+
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%StdinReader% }{ %RJFT% %EDDT% %battery% %cpu% %memory% %swap% %wlan0% <fc=#ee9a00>%date%</fc>"
+       }
