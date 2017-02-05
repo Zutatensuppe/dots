@@ -2,7 +2,7 @@
 
 put into .bashrc:
 
-  . ~/.profile
+	. ~/.profile
 
 # find keysym
 *usable for xmonad*
