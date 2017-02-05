@@ -41,7 +41,7 @@ before the if... udev-detect - block in your /etc/default.pa
   
 	load-module module-switch-on-connect
 
-# remove swappiness of system
+# reduce swappiness of system
 
 @see http://askubuntu.com/a/149427
 
