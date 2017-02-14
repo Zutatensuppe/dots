@@ -10,36 +10,29 @@ put into .bashrc:
 	/usr/include/X11/keysymdef.h
 	/usr/include/X11/XF86keysym.h 
 
-# setup hdmi
+# video and audio output with HDMI (or other external)
 
-## video
-
-install xrandr
+For video control install xrandr
 
 	$ sudo apt-get install xrandr
 
-install graphical user interface for xrandr
-
-	$ sudo apt-get install arandr
-
-## audio
-
-install pulseaudio
+For audio control install pulseaudio
 
 	$ sudo apt-get install pulseaudio
 
-install gui for pulseaudio
 
+In /etc/pulse/default.pa, replace 
+`load-module module-stream-restore` 
+with 
+`load-module module-stream-restore restore_device=false`
+  
+Then to toggle between output use the `toggle_video` or `toggle_audio` scripts respectively.
+
+Or install gui tools as an easy alternative or if the scripts fail:
+
+	$ sudo apt-get install arandr
 	$ sudo apt-get install pavucontrol
 
-
-
-## auto switch audio to hdmi:
-
-add the following to /etc/pulse/default.pa
-before the if... udev-detect - block in your /etc/default.pa
-  
-	load-module module-switch-on-connect
 
 # reduce swappiness of system
 

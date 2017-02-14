@@ -20,6 +20,10 @@ Plugin 'posva/vim-vue'
 
 Plugin 'ctrlpvim/ctrlp.vim'
 
+Plugin 'L9'
+
+Plugin 'FuzzyFinder'
+
 Plugin 'scrooloose/nerdtree'
 
 Plugin 'mileszs/ack.vim'
@@ -63,7 +67,8 @@ endfunction
 " --------------------------------------------------
 
 " ignore files in .gitignore 
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+" let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|cache\|uploads'
 
 
 
@@ -78,6 +83,15 @@ colorscheme solarized
 set background=dark
 filetype on
 set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
+set wildmenu
+set wildmode=longest:full,full
+set laststatus=2
+
+set statusline=%f         " Path to the file
+set statusline+=%=        " Switch to the right side
+set statusline+=%l        " Current line
+set statusline+=/         " Separator
+set statusline+=%L        " Total lines
 
 " let g:ackprg = 'ag --nogroup --nocolor --column'
 let g:ackprg = 'ag --vimgrep'
@@ -101,8 +115,11 @@ inoremap <F12> <C-o>:syntax sync fromstart<CR>
 let mapleader = ","
 nmap <leader>ne :NERDTreeToggle<cr>
 nmap <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>
-nmap <Leader>tt :Ack 
-nmap <Leader>ff :Ack 
+nmap <Leader>ss :Ack 
+
+nmap ,f :FufFileWithCurrentBufferDir<CR>
+nmap ,b :FufBuffer<CR>
+nmap ,t :FufTaggedFile<CR>
 
 
 "# Enabling Syntax complete 

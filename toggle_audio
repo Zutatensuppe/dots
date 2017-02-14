@@ -1,0 +1,84 @@
+#!/bin/bash
+
+SINKS=$(pactl list sinks short)
+
+ANALOG=$(egrep -o "^.*analog-stereo.*$" <<<"$SINKS")
+HDMI=$(egrep -o "^.*hdmi-stereo.*$" <<<"$SINKS")
+
+CSL=$(pactl stat | grep "Default Sink: ")
+CS=$(egrep -o "\S*$" <<<"$CSL")
+
+RESINK=""
+if [[ -z $ANALOG ]]
+then
+  RESINK="1"
+  pactl set-card-profile 0 output:analog-stereo+input:analog-stereo
+fi 
+
+if [[ -z $HDMI ]] 
+then
+  RESINK="1"
+  pactl set-card-profile 0 output:hdmi-stereo
+fi
+
+if [[ -n $RESINK ]]
+then
+  SINKS=$(pactl list sinks short)
+  ANALOG=$(egrep -o "^.*analog-stereo.*$" <<<"$SINKS")
+  HDMI=$(egrep -o "^.*hdmi-stereo.*$" <<<"$SINKS")
+fi
+
+echo "ANALOG: $ANALOG"
+echo "HDMI: $HDMI"
+echo " CS: $CS"
+ANALOG_SINK=$(egrep -o "^[0-9]{1,}" <<<"$ANALOG")
+HDMI_SINK=$(egrep -o "^[0-9]{1,}" <<<"$HDMI")
+
+CURRENT_SINK=""
+NEW_SINK=""
+if [[ $ANALOG == *"$CS"* ]]
+then
+
+  CURRENT_SINK="$ANALOG_SINK"
+  NEW_SINK="$HDMI_SINK"
+elif [[ $HDMI == *"$CS"* ]]
+then 
+  CURRENT_SINK="$HDMI_SINK"
+  NEW_SINK="$ANALOG_SINK"
+fi
+
+echo "analog $ANALOG_SINK"
+echo "hdmi $HDMI_SINK"
+echo "current: $CURRENT_SINK"
+
+if [[ -n $NEW_SINK ]]
+then
+  
+  # move all sink inputs to new input
+  SINK_INPUTS=$(pactl list sink-inputs short)
+  if [[ -n $SINK_INPUTS ]]
+  then
+    IFS=$'\n' read -d '' -r -a SINK_INPUTS_ARRAY <<< "$SINK_INPUTS"
+    
+    for SINK_INPUT in "${SINK_INPUTS_ARRAY[@]}"
+    do
+      echo $SINK_INPUT
+      IFS=$'\t' read -d '' -r -a L <<< "$SINK_INPUT"
+      # input id
+      #echo ${L[0]}
+      # sink id
+      #echo ${L[1]}
+  
+      if [[ "${L[1]}" != "$NEW_SINK" ]]
+      then
+        echo "switching input ${L[0]} to new sink ${NEW_SINK}"
+        pactl move-sink-input ${L[0]} ${NEW_SINK}
+      fi
+    
+    done
+  fi
+
+  echo "switching to sink $NEW_SINK"
+  pactl set-default-sink $NEW_SINK
+  
+fi
