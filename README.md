@@ -92,3 +92,9 @@ EndSection
 
 8. restart x
 
+
+# install newest mesa from source (opengl)
+
+http://x.debian.net/howto/build-mesa.html
+
+configure may have to be run with --with-gallium-drivers=""
